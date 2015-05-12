@@ -1,0 +1,8 @@
+{
+  "node": true,
+  "globalstrict": false,
+  "globals": {
+    "jQuery" : true,
+    "console": false
+  }
+}

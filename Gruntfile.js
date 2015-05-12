@@ -1,24 +1,78 @@
 module.exports = function(grunt) {
+  require('load-grunt-tasks')(grunt);
 
-  // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    uglify: {
+    jshint: {
+      files: ['Gruntfile.js','public/js/**/*.js'],
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        jshintrc: true
+      }
+    },
+    less: {
+      all:{
+        files: {
+          'dist/style.css':'public/less/*.less',
+          'dist/vendor.css':'bower_components/bootstrap/less/bootstrap.less'
+        }
       },
-      build: {
-        src: 'src/<%= pkg.name %>.js',
-        dest: 'build/<%= pkg.name %>.min.js'
+      options: {
+        strictImport: true,
+        sourceMap: true
+      }
+    },
+    clean: ['/dist'],
+    copy: {
+      all: {
+        cwd: 'public/',
+        src: ['html/**/*.html'],
+        dest: 'dist/',
+        flatten: true,
+        expand: true
+      }
+    },
+    browserify: {
+      all: {
+        src: ['public/js/**/*.js'],
+        dest: 'dist/app.js'
+      },
+      options: {
+        debug: true,
+        transform: ['debowerify']
+      }
+    },
+    watch: {
+      js: {
+        files: ['public/js/**/*.js'],
+        tasks: ['jshint', 'browserify']
+      },
+      server: {
+        files: ['server/**/*.js'],
+        tasks: ['jshint']
+      },
+      css: {
+        files: ['public/less/**/*.less'],
+        tasks: ['less']
+      },
+      html: {
+        files: ['public/html/**/*.html'],
+        tasks: ['copy']
+      },
+      grunt: {
+        files: 'Gruntfile.js',
+        tasks: 'default'
+      }
+    },
+    express: {
+      dev:{
+        options: {
+          script: 'server/server.js'
+        }
       }
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-less');
-
-  // Default task(s).
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('build', ['clean','copy','less', 'browserify', 'express:dev','watch']);
+  grunt.registerTask('default', ['jshint', 'build']);
 
 };
