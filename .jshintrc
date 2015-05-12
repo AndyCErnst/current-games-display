@@ -3,6 +3,7 @@
   "globalstrict": false,
   "globals": {
     "jQuery" : true,
-    "console": false
+    "console": false,
+    "alert": false
   }
 }

@@ -7,9 +7,13 @@ console.log(__dirname);
 var app = express();
 var env = process.env.NODE_ENV || 'development';
 
-var config = require('./config/config.js')[env];
+var config = require('./config/config')[env];
 
-require('./config/express.js')(app, config);
+require('./config/express')(app, config);
+
+require('./config/mongoose')(config);
+
+require('./config/routes')(app);
 
 app.listen(config.port);
 console.log('express listening on port ' + config.port);

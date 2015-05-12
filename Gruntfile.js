@@ -48,7 +48,7 @@ module.exports = function(grunt) {
       },
       server: {
         files: ['server/**/*.js'],
-        tasks: ['jshint']
+        tasks: ['default']
       },
       css: {
         files: ['public/less/**/*.less'],
@@ -61,12 +61,16 @@ module.exports = function(grunt) {
       grunt: {
         files: 'Gruntfile.js',
         tasks: 'default'
+      },
+      options: {
+        spawn: false
       }
     },
     express: {
       dev:{
         options: {
-          script: 'server/server.js'
+          script: 'server/server.js',
+          node_env: 'development'
         }
       }
     }
