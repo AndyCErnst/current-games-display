@@ -1,0 +1,27 @@
+{
+  "name": "current-games-display",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndyCErnst/current-games-display.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndyCErnst/current-games-display/issues"
+  },
+  "homepage": "https://github.com/AndyCErnst/current-games-display",
+  "dependencies": {
+    "bower": "^1.4.1",
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-less": "^1.0.1"
+  }
+}
