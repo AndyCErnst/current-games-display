@@ -13,8 +13,17 @@
 
   <script id="single-game-view" type="backbone/template">
     <h2><%= title %></h2>
-    <p><%= description %></p>
-    <div>Duration: <%= durationMins %> minutes</div>
+    <p>Description:<%= description %></p>
+    <div>Duration: <% var mins = durationMins % 60; print((durationMins - mins)/60 + ' hours ' + mins + ' mins') %></div>
+    <p>Players: <%= currentPlayers %> of <%= maxPlayers %> max players. <% if(maxPlayers===currentPlayers){print('Game full')}%></p>
+    <div>
+      <button class="btn btn-primary add-player">+</button>
+      <button class="btn btn-primary remove-player">-</button>
+    </div>
+    <div>
+      <button class="btn btn-primary edit-game-button">Edit</button>
+      <button class="btn btn-danger edit-game-button">Delete</button>
+    </div>
   </script>
 
   <script src="app.js"></script>

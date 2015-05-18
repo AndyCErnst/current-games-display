@@ -4,9 +4,18 @@ var $ = require('jquery'),
 
 module.exports = Backbone.View.extend({
   template: _.template($('#single-game-view').html()),
-  // initialize: function() {
-  //   this.render();
-  // },
+  events: {
+    'click .add-player': 'addPlayer',
+    'click .remove-player': 'removePlayer'
+  },
+  addPlayer: function(){
+    this.model.set('currentPlayers', this.model.get('currentPlayers') + 1);
+    this.model.save();
+  },
+  removePlayer: function() {
+    this.model.set('currentPlayers', this.model.get('currentPlayers') - 1);
+    this.model.save();
+  },
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
     return this;
