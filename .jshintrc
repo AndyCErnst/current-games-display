@@ -4,6 +4,7 @@
   "globals": {
     "jQuery" : true,
     "console": false,
-    "alert": false
+    "alert": false,
+    "window": false
   }
 }

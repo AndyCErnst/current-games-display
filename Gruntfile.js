@@ -33,7 +33,7 @@ module.exports = function(grunt) {
     },
     browserify: {
       all: {
-        src: ['public/js/**/*.js'],
+        src: ['./public/js/**/*.js'],
         dest: 'dist/app.js'
       },
       options: {

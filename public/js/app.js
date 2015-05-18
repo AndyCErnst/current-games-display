@@ -1,9 +1,25 @@
 'use strict';
 var $ = require('jquery'),
-  Backbone = require('backbone');
+  _ = require('underscore'),
+  Backbone = require('backbone'),
+  GameModel = require('./models/game'),
+  GameCollection = require('./models/gameCollection');
 
-$.get('/api/games', function(data, status) {
-  console.log(data);
-}).fail(function(){
-  alert('error getting game list');
+Backbone.$ = $;
+
+var GameView = Backbone.View.extend({
+  template: _.template($('#single-game-view').html()),
+  initialize: function() {
+    this.listenTo(this.model, 'change', this.render);
+  },
+  render: function(){
+    this.$el.append(this.template(this.model.toJSON()));
+    return this;
+  },
 });
+
+var gameCollection = new GameCollection();
+window.col = gameCollection;
+gameCollection.fetch({reset: true});
+
+console.dir(gameCollection);
