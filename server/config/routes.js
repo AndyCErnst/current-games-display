@@ -9,36 +9,39 @@ module.exports = function(app) {
       res.send(results);
     });
   });
+
   app.get('/api/games/:id', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    console.log('req.body is');
+    console.log('get req.body is');
     console.log(req.body);
     Game.findOne({'_id':req.params.id}, function(err, game) {
       if (err) return res.send(500, err.message);
       res.send(game);
     })
   });
+
   app.post('/api/games', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    console.log('req.body is');
+    console.log('post req.body is');
     console.log(req.body);
-    var game = new Game(req.body); // Look at what backbone sends
+    var game = new Game(req.body);
     game.save(function(err, newGame) {
       if (err) return res.send(500, err.message);
       res.send(newGame);
     })
   });
+
   app.put('/api/games/:id', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     console.log('put req.body is');
     console.log(req.body);
 
-    // var game = new Game(req.body); // Look at what backbone sends
-    // game.save(function(err, newGame) {
-    //   if (err) return res.send(500, err.message);
-    //   res.send(newGame);
-    // })
+    Game.findOneAndUpdate({'_id': req.params.id}, req.body, function(err, game) {
+      if (err) return res.send(500, err.message);
+      res.send(game)
+    });
   });
+
   app.delete('/api/games/:id', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     Game.remove({'_id':req.params.id}, function(err){
