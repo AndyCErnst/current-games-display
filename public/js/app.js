@@ -15,3 +15,4 @@ gameCollection.fetch({reset: true});
 
 window.col = gameCollection;
 
+Backbone.history.start({pushState: true});

@@ -37,12 +37,15 @@
       <b>Description:</b>
       <span class="description"><%= description %></span>
     </p>
-    <p>Duration:
-      <div><% var mins = durationMins % 60; print((durationMins - mins)/60 + ' hours '); if(mins){print(mins + ' mins')}%>
-      </div>
+    <p>
+        <b>Duration:</b>
+        <span><% var mins = durationMins % 60; print((durationMins - mins)/60 + ' hours '); if(mins){print(mins + ' mins');}%>
+        </span>
     </p>
     <p>
-      <p>Players: <%= currentPlayers %> of <%= maxPlayers %> max players. <% if(currentPlayers>=maxPlayers){print('Game full')}%></p>
+      <b>Players:</b>
+      <span><%= currentPlayers %> of <%= maxPlayers %> max players. <% if(currentPlayers>=maxPlayers){print('Game full')}%>
+      </span>
     </p>
     <div>
       <button class="btn btn-primary add-player">+</button>
@@ -57,6 +60,18 @@
 
 
   <script id="game-list-view" type="backbone/template">
+    <div class="game-view">
+      <h2><%= title %></h2>
+      <p>
+        <b>Duration:</b>
+        <span><% var mins = durationMins % 60; print((durationMins - mins)/60 + ' hours '); if(mins){print(mins + ' mins');}%>
+        </span>
+      </p>
+      <p>
+        <b>Players:</b>
+        <span> <%= currentPlayers %> of <%= maxPlayers %> max players. <% if(currentPlayers>=maxPlayers){print('Game full')}%></span>
+      </p>
+    </div>
   </script>
 
 
