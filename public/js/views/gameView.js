@@ -1,7 +1,7 @@
+window.app = window.app || {};
 var $ = require('jquery'),
   _ = require('underscore'),
-  Backbone = require('backbone'),
-  router = require('../router.js');
+  Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
   template: _.template($('#single-game-view').html()),
@@ -10,7 +10,8 @@ module.exports = Backbone.View.extend({
   },
   showEditView: function(){
     console.log('show edit view');
-    router.navigate('edit/' + this.model.get('id'), {trigger: true});
+    var id = this.model.get('id') || this.model.get('cid');
+    window.app.router.navigate('edit/' + id, {trigger: true});
   },
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));

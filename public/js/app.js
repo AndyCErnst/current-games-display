@@ -4,15 +4,17 @@ var $ = require('jquery'),
   Backbone = require('backbone'),
   GameModel = require('./models/game'),
   GameCollection = require('./models/gameCollection'),
-  GameCollectionView = require('./views/gameCollectionView');
+  Router = require('./router.js');
 
 Backbone.$ = $;
 
-var gameCollection = new GameCollection();
-var gameColView = new GameCollectionView({collection: gameCollection});
+window.app = window.app || {};
 
-gameCollection.fetch({reset: true});
+window.app.gameCollection = new GameCollection();
 
-window.col = gameCollection;
+window.app.gameCollection.fetch({reset: true});
+
+window.app.router = new Router();
+
 
 Backbone.history.start({pushState: true});

@@ -1,7 +1,7 @@
 var $ = require('jquery'),
   _ = require('underscore'),
   Backbone = require('backbone'),
-  GameView = require('./gameView');
+  GameListItemView = require('./gameListItemView');
 
 module.exports = Backbone.View.extend({
   el: $('#app-content'),
@@ -11,8 +11,8 @@ module.exports = Backbone.View.extend({
     _.bindAll(this, 'addGame', 'addAll');
   },
   addGame: function(game) {
-    var gameView = new GameView({model: game});
-    this.$el.append(gameView.render().el);
+    var itemView = new GameListItemView({model: game});
+    this.$el.append(itemView.render().el);
   },
   addAll: function() {
     this.collection.forEach(this.addGame);
