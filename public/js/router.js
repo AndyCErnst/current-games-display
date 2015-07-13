@@ -1,13 +1,14 @@
 window.app = window.app || {};
 var $ = require('jquery'),
   Backbone = require('backbone'),
+  GameView = require('./views/gameView'),
   GameCollectionView = require('./views/gameCollectionView');
 
 
 var Router = Backbone.Router.extend({
   routes: {
     '': 'index',
-    'game:/id':'showGame',
+    'game/:id':'showGame',
     'search/*': 'search'
   },
   initialize: function() {
@@ -28,8 +29,9 @@ var Router = Backbone.Router.extend({
     this.showPage(gameColView);
   },
   showGame: function(id) {
+    console.log('show gmae route');
     var game = this.collection.get(id);
-    var gameView = new GameView(game);
+    var gameView = new GameView({model: game});
     this.showPage(gameView);
   },
   search: function(term) {

@@ -4,7 +4,6 @@ var $ = require('jquery'),
   GameListItemView = require('./gameListItemView');
 
 module.exports = Backbone.View.extend({
-  el: $('#app-content'),
   initialize: function() {
     this.collection.on('add', this.addGame, this);
     this.collection.on('reset', this.addAll, this);
@@ -16,5 +15,9 @@ module.exports = Backbone.View.extend({
   },
   addAll: function() {
     this.collection.forEach(this.addGame);
+  },
+  render: function() {
+    this.addAll();
+    return this;
   }
 });

@@ -10,7 +10,7 @@ module.exports = Backbone.View.extend({
   },
   showSingleGameView: function(e){
     console.log(this.model);
-    console.log('show single view');
+    console.log('show list view');
     var id = this.model.id || this.model.cid;
     window.app.router.navigate('game/' + id, {trigger: true});
   },

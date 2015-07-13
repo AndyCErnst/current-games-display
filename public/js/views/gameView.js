@@ -10,8 +10,7 @@ module.exports = Backbone.View.extend({
   },
   showEditView: function(){
     console.log('show edit view');
-    var id = this.model.get('id') || this.model.get('cid');
-    window.app.router.navigate('edit/' + id, {trigger: true});
+    window.app.router.navigate('edit/' + this.model.id, {trigger: true});
   },
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
