@@ -6,11 +6,14 @@ var $ = require('jquery'),
 module.exports = Backbone.View.extend({
   template: _.template($('#single-game-view').html()),
   events: {
-    'click .game-view': 'showEditView'
+    'click .edit-button': 'showEditView',
+    'click .back-button': 'showListView'
   },
   showEditView: function(){
-    console.log('show edit view');
     window.app.router.navigate('edit/' + this.model.id, {trigger: true});
+  },
+  showListView: function(){
+    window.app.router.navigate('/');
   },
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));

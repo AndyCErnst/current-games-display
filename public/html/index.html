@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>What We're Playing</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="vendor.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -13,7 +14,7 @@
 
   <script id="single-game-view" type="backbone/template">
     <div class="game-view">
-      <h2><%= title %></h2>
+      <h2><%= title %></h2><button class="back-button btn btn-primary">Back</button>
       <p>
         <b>Description:</b>
         <span class="description"><%= description %></span>
@@ -27,6 +28,7 @@
         <b>Players:</b>
         <span> <%= currentPlayers %> of <%= maxPlayers %> max players. <% if(currentPlayers>=maxPlayers){print('Game full')}%></span>
       </p>
+      <button class="edit-button hidden1 btn btn-secondary">Edit</button>
     </div>
   </script>
 
