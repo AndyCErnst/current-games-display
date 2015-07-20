@@ -1,7 +1,8 @@
-var auth = require('./auth');
-var Game = require('../models/GameModel');
+var auth = require('./auth'),
+  Game = require('../models/GameModel'),
+  express = require('express');
 
-module.exports = function(app) {
+module.exports = function(app, config) {
   app.get('/api/games', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     Game.find({}, function(err, results) {
@@ -48,5 +49,12 @@ module.exports = function(app) {
       if (err) return res.send(500, err.message);
       res.send({'message' : 'success'});
     });
+  });
+
+  app.use('/static/', express.static(__dirname+'/../../dist/static/'));
+
+
+  app.get('/*', function(req, res) {
+    res.sendFile('index.html', {root: config.rootPath + '/dist/'});
   });
 }

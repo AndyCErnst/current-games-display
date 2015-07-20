@@ -12,8 +12,8 @@ module.exports = function(grunt) {
     less: {
       all:{
         files: {
-          'dist/style.css':'public/less/*.less',
-          'dist/vendor.css':'bower_components/bootstrap/less/bootstrap.less'
+          'dist/static/style.css':'public/less/*.less',
+          'dist/static/vendor.css':'bower_components/bootstrap/less/bootstrap.less'
         }
       },
       options: {
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     browserify: {
       all: {
         src: ['./public/js/**/*.js'],
-        dest: 'dist/app.js'
+        dest: 'dist/static/app.js'
       },
       options: {
         debug: true,

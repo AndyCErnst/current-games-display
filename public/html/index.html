@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>What We're Playing</title>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="vendor.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/static/vendor.css">
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
   <h1>What We're Playing</h1>
@@ -28,7 +28,7 @@
         <b>Players:</b>
         <span> <%= currentPlayers %> of <%= maxPlayers %> max players. <% if(currentPlayers>=maxPlayers){print('Game full')}%></span>
       </p>
-      <button class="edit-button hidden1 btn btn-secondary">Edit</button>
+      <button class="edit-button hidden1 btn btn-danger">Edit</button>
     </div>
   </script>
 
@@ -77,6 +77,6 @@
   </script>
 
 
-  <script src="app.js"></script>
+  <script src="/static/app.js"></script>
 </body>
 </html>
