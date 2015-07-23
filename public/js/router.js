@@ -1,6 +1,7 @@
 window.app = window.app || {};
 var $ = require('jquery'),
   Backbone = require('backbone'),
+  Game = require('./models/game'),
   GameView = require('./views/gameView'),
   GameCollectionView = require('./views/gameCollectionView');
 
@@ -29,10 +30,20 @@ var Router = Backbone.Router.extend({
     this.showPage(gameColView);
   },
   showGame: function(id) {
+    var self = this;
     console.log('show gmae route');
     var game = this.collection.get(id);
-    var gameView = new GameView({model: game});
-    this.showPage(gameView);
+    if(game) {
+      var gameView = new GameView({model: game});
+      this.showPage(gameView);
+    } else {
+      game = new Game(id);
+      game.on('change', function() {
+        var gameView = new GameView({model: game});
+        self.showPage(gameView);
+      });
+      game.fetch();
+    }
   },
   search: function(term) {
     console.log('search registered for ' + term);

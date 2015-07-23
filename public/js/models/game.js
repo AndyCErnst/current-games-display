@@ -2,7 +2,13 @@ var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
   idAttribute: '_id',
-  // rootUrl: 'api/games/',
+  rootUrl: '../api/games/',
+  initialize: function(id) {
+    this._id = id;
+  },
+  url: function() {
+    return this.rootUrl + this._id;
+  },
   defaults: {
     title: 'Untitled Game',
     description: 'No description given',

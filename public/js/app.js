@@ -12,9 +12,8 @@ window.app = window.app || {};
 
 window.app.gameCollection = new GameCollection();
 
-window.app.gameCollection.fetch({reset: true});
+window.app.gameCollection.fetch();
 
 window.app.router = new Router();
-
 
 Backbone.history.start({pushState: true});
