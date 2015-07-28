@@ -1,8 +1,10 @@
 window.app = window.app || {};
 var $ = require('jquery'),
   Backbone = require('backbone'),
+  _ = require('underscore'),
   Game = require('./models/game'),
   GameView = require('./views/gameView'),
+  EditView = require('./views/editView'),
   GameCollectionView = require('./views/gameCollectionView');
 
 
@@ -10,12 +12,15 @@ var Router = Backbone.Router.extend({
   routes: {
     '': 'index',
     'game/:id':'showGame',
-    'search/*': 'search'
+    'game/edit/:id':'editGame',
+    'search/:term': 'search'
   },
+  self: this,
+  currentView: '',
   initialize: function() {
     this.collection = window.app.gameCollection;
+    // _.bindAll(this, 'fetchAndRender');
   },
-  currentView: '',
   showPage: function(view) {
     console.log('showing ');
     console.log(view);
@@ -25,25 +30,31 @@ var Router = Backbone.Router.extend({
     $('#app-content').append(view.render().el);
     this.currentView = view;
   },
+  getAndShow: function(Model, View, id) {
+    var self = this;
+    var model = this.collection.get(id);
+    if(model) {
+      var view = new View({model: model});
+      self.showPage(view);
+    } else {
+      model = new Model(id);
+      model.on('change', function() {
+        model.off('change');
+        var view = new View({model: model});
+        self.showPage(view);
+      });
+      model.fetch();
+    }
+  },
   index: function() {
     var gameColView = new GameCollectionView({collection: this.collection});
     this.showPage(gameColView);
   },
   showGame: function(id) {
-    var self = this;
-    console.log('show gmae route');
-    var game = this.collection.get(id);
-    if(game) {
-      var gameView = new GameView({model: game});
-      this.showPage(gameView);
-    } else {
-      game = new Game(id);
-      game.on('change', function() {
-        var gameView = new GameView({model: game});
-        self.showPage(gameView);
-      });
-      game.fetch();
-    }
+    this.getAndShow(Game, GameView, id);
+  },
+  editGame: function(id) {
+    this.getAndShow(Game, EditView, id);
   },
   search: function(term) {
     console.log('search registered for ' + term);

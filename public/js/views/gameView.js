@@ -10,10 +10,10 @@ module.exports = Backbone.View.extend({
     'click .back-button': 'showListView'
   },
   showEditView: function(){
-    window.app.router.navigate('edit/' + this.model.id, {trigger: true});
+    window.app.router.navigate('game/edit/' + this.model.id, {trigger: true});
   },
   showListView: function(){
-    window.app.router.navigate('/');
+    window.app.router.navigate('/', {trigger: true});
   },
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));

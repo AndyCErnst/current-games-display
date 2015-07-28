@@ -2,7 +2,7 @@ var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
   idAttribute: '_id',
-  rootUrl: '../api/games/',
+  rootUrl: window.location.origin + '/api/games/',
   initialize: function(id) {
     this._id = id;
   },

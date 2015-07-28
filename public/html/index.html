@@ -34,7 +34,7 @@
 
 
   <script id="edit-game-view" type="backbone/template">
-    <h2><%= title %></h2>
+    <h2><%= title %></h2><button class="back-button btn btn-primary">Back</button>
     <p>
       <b>Description:</b>
       <span class="description"><%= description %></span>
@@ -54,8 +54,8 @@
       <button class="btn btn-primary remove-player">-</button>
     </div>
     <div>
-      <button class="btn btn-primary edit-game-button">Edit</button>
-      <button class="btn btn-danger edit-game-button">Delete</button>
+      <button class="btn btn-warning save-game-button">Save</button>
+      <button class="btn btn-danger delete-game-button">Delete</button>
     </div>
   </script>
 
